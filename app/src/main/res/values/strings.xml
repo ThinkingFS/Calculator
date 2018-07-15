@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Serving Size Calculator</string>
+    <string name="select_a_pot_to_use">Select a pot to use:</string>
+    <string name="add_pot">Add Pot</string>
+    <string name="long_press_a_pot_or_pan_to_edit">Long-press a pot or pan to edit.</string>
+    <string name="pot_name">Pot Name:</string>
+    <string name="pot_weight_g">Pot Weight (g):</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="pot">Pot</string>
+    <string name="pot_name_goes_here">Pot Name Goes Here</string>
+    <string name="weight_empty_g">Weight Empty (g)</string>
+    <string name="weight_with_food_g">Weight with food (g)</string>
+    <string name="weight_of_pot_with_food">Weight of pot with food</string>
+    <string name="weight_of_food_g">Weight of food (g)</string>
+    <string name="servings"># Servings</string>
+    <string name="how_many_servings">How many servings?</string>
+    <string name="serving_weight">Serving Weight</string>
+    <string name="back">Back</string>
+</resources>
