@@ -1,17 +1,20 @@
 1 App Overview
+
 1-1. User inputs one or more pots’ name and weight into app.
+
 1-2. In real life: user then uses a pot to make a meal and weighs the pot with the food in it.
-1-3. In app: user selects the pot they used and enters the combined weight of the pot plus the
-food. Tool subtracts pot’s weight (when empty) from combined weight to compute weight
-of just the food.
-1-4. Finally, user enters how many servings are in the food and tool divides the weight of food
-by number of servings, displaying weight of each serving.
+
+1-3. In app: user selects the pot they used and enters the combined weight of the pot plus the food. Tool subtracts pot’s weight (when empty) from combined weight to compute weight of just the food.
+
+1-4. Finally, user enters how many servings are in the food and tool divides the weight of food by number of servings, displaying weight of each serving.
+
 2. Pot Class JUnit
 Using the skeleton online, implement the Pot class.
 Write JUnit tests for your Pot class.
 You must achieve 100% code coverage of Pot’s lines code.
 You must write at least 4 test methods (may be closer to 8+).
 All tests must pass, and be well named.
+
 3. Required Application Features
 3.1 General Requirements
 Create an Android application targeting the minimum SDK version API 15 or lower
@@ -19,45 +22,21 @@ Create an Android application targeting the minimum SDK version API 15 or lower
 Change the name of your application (shown on all activities). Do this in strings.xml.
 All layout XML files may not have any hard-coded text displayed on the UI: it must come
 from strings.xml. Java code may still hard-code strings/outputs.
-Screen-shots in this document are for inspiration; as long as your application correctly
-implements the required features, any nice and usable UI is fine.
+Screen-shots in this document are for inspiration; as long as your application correctly implements the required features, any nice and usable UI is fine.
 None of the things listed as “hints” are required; you may choose to do them or not.
 Activity files (.java and .xml) must be well named, but need not match this document.
 
 3.2 Screen 1: Pot List
-This is the initial activity displayed when app
-starts.
-Display the pots which the user has already
-entered.
+This is the initial activity displayed when app starts.
+Display the pots which the user has already entered.
 Show each pot’s name and weight (in grams).
-Use the PotCollection class (provided on
-assignments webpage) to store the pots.
+Use the PotCollection class (provided on assignments webpage) to store the pots.
 Use the Pot class to store an individual pot.
-Allow the user to add a new pot to the collection
-by launching the Add Pot activity.
-User may tap on a pot in the list to launch the
-Calculate activity.
-Hints
-Instantiate a PotCollection as a member of
-your Pot List activity class.
-You may edit the PotCollection class as
-needed.
-Use a ListView to show the list of pots.
-Populate the ListView using an
-ArrayAdapter. 
-PotCollection class has the
-getPotDescriptions() method which can give you the array of Strings needed to
-populate the ListView via an ArrayAdapter.
-For initial testing (before you have any other screens working), try putting some test data
-into your PotCollection object.
-After adding a new pot you’ll need to refresh your list of pots. Just create a new
-ArrayAdapter and call setAdapter() on the ListView.
-Put this code in its own method to avoid duplicate code.
-For how to pass data to and from other activities, see hints for the next two activities.
+Allow the user to add a new pot to the collection by launching the Add Pot activity.
+User may tap on a pot in the list to launch the Calculate activity.
 
 3.3 Screen 2: Add Pot
-Have entry boxes for the pot’s name and pot’s
-weight.
+Have entry boxes for the pot’s name and pot’s weight.
 If using EditText widgets for data input, each
 must have a hint for what goes in it (such as
 show in UI to the right).
@@ -66,71 +45,20 @@ The weight entry box must only allow nonnegative
 integer values.
 Have a way of either accepting (OK), or canceling
 adding the pot (such as the OK / Cancel buttons).
-Hints
-Use a table layout for having the two EditText
-views line up.
-Likely use TextEdit boxes for data entry.
-Convert a String to an int with:
-int val = Integer.parseInt(“42”);
-Note that if the String does not contain a
-number it throws NumberFormatException.
-You need-not (for the required features) handle
-validating the user’s inputs (see Optional
-Features section). So if user does not enter a
-weight and clicks OK, your application may
-crash; this is fine (for the core features!).
-Hint on Passing Data back from an activity
-Data is passed from one activity to another using an Intent.
-Have the Add Pot activity “return” an Intent which stores the following in its Extra:
-pot name (string)
-pot weight in g (int)
-Call this from List Pot’s onActivityResult(..) method.
-Pot List activity calls startActivityForResult(...) to launch this activity.
-Pot List activity overrides onActivityResult(...) to handle the “returned” data.
-Rather than having Pot List activity know how to handle the “returned” intent from the Add
-Pot activity, have the Add Pot activity expose the following method:
-public static Pot getPotFromIntent(Intent data);
-This encapsulates the details of how data is stored in the Intent to inside this activity.
-Call this method and pass in the “returned” intent and it extracts the data about the pot
-and puts it into a Pot object for us.
+
 
 3.4 Screen 3: Calculate Serving
 Display the selected pot’s name and weight.
-Allow user to enter the combined weight of the
-pot with food in it.
+Allow user to enter the combined weight of the pot with food in it.
 UI must allow only a non-negative integer.
 Calculate and display the weight of the food (in g)
 Allow user to enter number of servings
 Must be a non-negative integer.
-Calculate and display the weight of each serving
-(truncated to the nearest gram is fine).
-Your activity must not crash if the user has not yet
-entered a number of servings, or if the number of
-servings is zero.
-Have some mechanism to navigate back to the
-previous activity.
-As the user types data into, or changes a value in
-either of the input boxes, recalculate the serving
-weight.
-Hints
-When clicking the Back button (or the like), call
-the finish() method to end the activity.
-Pass data to the Calculate activity using an Intent.
-Pass in the pot name and weight.
-For good encapsulation, have the Calculate
-activity expose a method which creates the
-intent required to launch it. Pass this function the data to be encoded into the Intent. This
-encapsulates how the pot’s information is stored in the Intent’s extras:
-public static Intent makeLaunchIntent(Context context, Pot pot);
-To recompute the serving-weight while the user is entering data, you’ll need to pass a
-TextWatcher object to the addTextChangedListener(...) method of the
-EditText. In this TextWatcher, put your code in afterTextChanged(...) which
-recomputes the serving weight; other methods in TextWatcher can be left untouched.
-If trying display a number in a TextView, note that
-myTextView.setText(42);
-will attempt to load the strings.xml resource number 42 into the TextView, which
-likely does not exist and will crash your program. Instead, convert the into to a String:
-myTextView.setText("" + 42);
+Calculate and display the weight of each serving.
+The activity must not crash if the user has not yet entered a number of servings, or if the number of servings is zero.
+Have some mechanism to navigate back to the previous activity.
+As the user types data into, or changes a value in either of the input boxes, recalculate the serving weight.
+
 
 4. Optional Features
 
